@@ -135,6 +135,5 @@ class UserController extends Controller
             DB::table('taikhoan')->where('IDTaiKhoan', $id)->delete();
             return response()->json(['Thong bao'=>'Xoa tai khoan thanh cong !'],200);
         }
-        
     }
 }

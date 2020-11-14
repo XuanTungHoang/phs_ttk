@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SachController;
+use App\Http\Controllers\NhapXuatSach;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +34,18 @@ Route::post('/khachhang',[KhachHangController::class,'store']);
 Route::get('/khachhang/{id}',[KhachHangController::class,'show']);
 Route::put('/khachhang/{id}',[KhachHangController::class,'update']);
 Route::delete('/khachhang/{id}',[KhachHangController::class,'destroy']);
+
+// Sach  
+Route::get('/sach',[SachController::class,'index']);
+Route::post('/sach',[SachController::class,'store']);
+Route::get('/sach/{id}',[SachController::class,'show']);
+Route::put('/sach/{id}',[SachController::class,'update']);
+Route::delete('/sach/{id}',[SachController::class,'destroy']);
+
+// Quan li nhap xuat
+Route::post('/phieunhap',[NhapXuatSach::class,'TaoPhieuNhap']);
+Route::post('/phieuxuat',[NhapXuatSach::class,'TaoPhieuXuat']);
+
+// Quan li thong ke
+
 
