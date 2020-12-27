@@ -4,6 +4,7 @@ use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SachController;
 use App\Http\Controllers\NhapXuatSach;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,35 @@ Route::delete('/sach/{id}',[SachController::class,'destroy']);
 Route::post('/phieunhap',[NhapXuatSach::class,'TaoPhieuNhap']);
 Route::post('/phieuxuat',[NhapXuatSach::class,'TaoPhieuXuat']);
 
-// Quan li thong ke
+// Quan li hoa don 
+Route::get('/hoadonnhap',[NhapXuatSach::class,'DSHoaDonNhap']);
+Route::get('/hoadonnhap/{id}',[NhapXuatSach::class,'CTHoaDonNhap']);
+Route::get('/hoadonxuat',[NhapXuatSach::class,'DSHoaDonXuat']);
+Route::get('/hoadonxuat/{id}',[NhapXuatSach::class,'CTHoaDonXuat']);
+
+// Sach trong kho
+Route::get('/sachtrongkho',[SachController::class,'xuatsachtrongkho']);
+
+// login logout
+Route::post('/login',[AuthController::class,'login'] );
+
+// get NamXuatBan , Daily
+Route::get('/nxb',[SachController::class,'get_nxb']);
+Route::get('/daily',[SachController::class,'get_daily']);
+
+// dashboard v1
+Route::get('/slsach',[SachController::class,'slsach']);
+Route::get('/sohdnhap',[NhapXuatSach::class,'sohdnhap']);
+Route::get('/sohdxuat',[NhapXuatSach::class,'sohdxuat']);
+Route::get('/sokh',[KhachHangController::class,'sokhachhang']);
+
+// dashboard v2
+Route::get('/nhaptheothang',[NhapXuatSach::class,'nhaptheothang']);
+
+// dashboard v3
+Route::get('/sachbanchay',[SachController::class,'sachbanchay']);
+Route::get('/hoadoncao',[NhapXuatSach::class,'hoadoncao']);
+
+
 
 

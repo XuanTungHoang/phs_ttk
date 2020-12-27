@@ -11,7 +11,7 @@ class Sach extends Model
     protected $table = 'sach';
 
     public static $rules_sach =[
-        'TenSach'=>'required|unique:sach',
+        'TenSach'=>'required',
         'TacGia'=>'required',
         'NhaXuatBan'=>'required',
         'NamXuatBan'=>'required|numeric',
@@ -25,7 +25,6 @@ class Sach extends Model
 
     public static $messages_sach =[
         'TenSach.required'=>'Ten sach khong duoc de trong',
-        'TenSach.unique'=>'Ten sach da ton tai',
         'TacGia.required'=>'Ten tac gia khong duoc de trong',
         'NhaXuatBan.required'=>'Nam xuat ban khong duoc de trong',
         'NamXuatBan.numeric'=>'Nam xuat ban phai la ki tu so',

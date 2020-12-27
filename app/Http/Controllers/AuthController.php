@@ -2,23 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 class AuthController extends Controller
 {
-    public function get_Login(){
-        return view('login');
-    }
-
-    public function post_Login(Request $request){
-        //  print_r($request->input_pass);
+    public function login(Request $request){
+       // return '123';
+        // print_r($request->TenDangNhap);
         // die('3');
-        if (Auth::attempt(['email' => $request->input_name, 'password' => $request->input_pass])) {
-            // The user is active, not suspended, and exists.
-            return 'true';
+        $user= User::where('TenDangNhap',$request->TenDangNhap)->first();
+        if(!empty($user)){
+            if($user->MatKhau=Hash::make($this->request['MatKhau'])){
+                DB::table('taikhoan')->where('TenDangNhap',$request->TenDangNhap)->update(array(
+                    'TrangThai'=> 1 ,
+                ));
+                return $user;
+            }   else{
+                return 0;
+            }
         }else{
-            return '0';
+            return 0;
         }
+
+
+
+       // return response()->json($user->TenDangNhap);
+
+        // if (Auth::attempt(['TenDangNhap' => $request->TenDangNhap, 'MatKhau' => $request->MatKhau])) {
+        //     return 'true';
+        // }else{
+        //     return '0';
+        // }
         
         
         

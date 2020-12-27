@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KhachHang;
 use App\Models\Sach;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -137,5 +138,28 @@ class SachController extends Controller
             DB::table('sach')->where('IDSach', $id)->delete();
             return response()->json(['Thong bao'=>'Xoa sach thanh cong !'],200);
         }
+    }
+
+    public function xuatsachtrongkho(){
+        $sach=Sach::where('ConLai','>','0')->get();
+        return response()->json($sach,200);
+    }
+
+    public function get_nxb(){
+        $nxb=KhachHang::where('IDLoaiKhachHang',1)->get();
+        return response()->json($nxb,200);
+    }
+    public function get_daily(){
+        $daily=KhachHang::where('IDLoaiKhachHang',2)->get();
+        return response()->json($daily,200);
+    }
+
+    public function slsach(){
+        $sl=Sach::count();
+        return response()->json(['sl'=>$sl]);
+    }
+    public function sachbanchay(){
+        $sl = Sach::orderBy('DaBan','desc')->take(4)->get();
+        return response()->json($sl,200);
     }
 }

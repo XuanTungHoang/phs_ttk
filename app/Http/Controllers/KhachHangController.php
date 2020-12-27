@@ -131,4 +131,9 @@ class KhachHangController extends Controller
             return response()->json(['Thong bao'=>'Xoa khach hang thanh cong !'],200);
         }
     }
+
+    public function sokhachhang(){
+        $kh= DB::table('khachhang')->count();
+        return response()->json($kh,200);
+    }
 }
